@@ -1,3 +1,5 @@
+
+import { Navigate, Routes, Route } from 'react-router-dom'
 import './App.css'
 import Navbar from './components/Navbar'
 import Banner from './components/Banner'
@@ -9,21 +11,35 @@ import Newsletter from './components/Newsletter'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import FeaturedTutorials from './components/FeaturedTutorials'
+import Login from './pages/login'
+import Signup from './pages/signup'
 
-function App() {
+function Home() {
   return (
-    <div>
+    <>
       <Navbar />
       <Banner />
       <About />
-     <Myprojects />
-     <FeaturedArticles />
-<FeaturedTutorials />
+      <Myprojects />
+      <FeaturedArticles />
+      <FeaturedTutorials />
       <Gallery />
       <Newsletter />
       <Contact />
       <Footer />
-    </div>
+    </>
+  )
+}
+
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Navigate to="/signup" replace />} />
+      <Route path="/signup" element={<Signup />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/home" element={<Home />} />
+      <Route path="*" element={<Navigate to="/signup" replace />} />
+    </Routes>
   )
 }
 
